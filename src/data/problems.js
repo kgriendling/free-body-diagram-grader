@@ -229,7 +229,33 @@ const problems = [
   } 
 ];
 
-export default problems;
+// Display order (top to bottom in the menu). Edit this list to reorder.
+// Anything not listed here appears at the end of the menu with original title.
+const displayOrder = ['p4', 'p1', 'p5', 'p7', 'p8', 'p9'];
+
+// Display names. Any id not listed keeps its original title.
+const displayTitles = {
+  p4: 'Problem 3.1',
+  p1: 'Problem 3.2',
+  p5: 'Problem 3.3',
+  p7: 'Problem 4.2',
+  p8: 'Problem 4.3',
+  p9: 'Problem 6.2',
+};
+
+const listed = displayOrder
+  .map((id) => problems.find((p) => p.id === id))
+  .filter(Boolean);
+
+// Remaining problems (p2, p3, p6, p10) go at the end in their original order.
+const remaining = problems.filter((p) => !displayOrder.includes(p.id));
+
+const ordered = [...listed, ...remaining].map((p) => ({
+  ...p,
+  title: displayTitles[p.id] || p.title,
+}));
+
+export default ordered;
 
 
 
