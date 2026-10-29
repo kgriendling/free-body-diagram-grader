@@ -257,7 +257,10 @@ const ordered = [...listed, ...remaining].map((p) => ({
 
 // Display order (top to bottom in the menu). Edit this list to reorder.
 // Anything not listed here is appended at the end with its original title.
-const displayOrder = ['p4', 'p1', 'p5', 'p7', 'p8', 'p9'];
+const displayOrder = [
+  'p4', 'p1', 'p5', 'p7', 'p8', 'p9',   // labeled problems
+  'p6', 'p2', 'p3', 'p10',              // extra practice problems
+];
 
 // Display names. Any id not listed keeps its original title.
 const displayTitles = {
@@ -267,13 +270,17 @@ const displayTitles = {
   p7: 'Problem 4.2',
   p8: 'Problem 4.3',
   p9: 'Problem 6.2',
+  p6: 'Ch.3 Extra Practice 1',
+  p2: 'Ch.4 Extra Practice 1',
+  p3: 'Ch.4 Extra Practice 2',
+  p10: 'Ch.4 Extra Practice 3',
 };
 
 const listed = displayOrder
   .map((id) => problems.find((p) => p.id === id))
   .filter(Boolean);
 
-// Remaining problems (p2, p3, p6, p10) go at the end in their original order.
+// Safety net: any problem not in displayOrder goes at the end in its original order.
 const remaining = problems.filter((p) => !displayOrder.includes(p.id));
 
 const ordered = [...listed, ...remaining].map((p) => ({
